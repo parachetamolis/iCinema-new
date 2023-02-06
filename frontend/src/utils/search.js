@@ -3,7 +3,7 @@ export default function (items, filter, filterBy) {
   if (
     !filter ||
     !filterBy ||
-    !items[0].hasOwnProperty(filterBy) ||
+    !Object.prototype.hasOwnProperty.call(items[0], filterBy) ||
     !filter.trim()
   )
     return items;

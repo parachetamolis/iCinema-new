@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.css';
 
-const CardBack = ({ ToggleFavouriteCard, id, liked, description }) => {
+const CardBack = ({ description }) => {
   return ( 
     <div className="back">
        <h5> Summary </h5>

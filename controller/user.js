@@ -44,8 +44,8 @@ exports.signUp = (req, res) => {
                     text: `Hello Dear ${email}`,
                     html: `<b>Hello Dear User, we are happy that you join our family. Kind Regards, iCinema Team.</b>`,
                   })
-                  .then((info) => console.log("Email has been sent!"))
-                  .catch((err) => console.log(err));
+                  .then(() => {})
+                  .catch(() => {})
                 res.status(201).json({
                   message: "The user has been signed up successfully!",
                   userData,
@@ -59,7 +59,7 @@ exports.signUp = (req, res) => {
     });
 };
 
-exports.signIn = (req, res, next) => {
+exports.signIn = (req, res) => {
   const { password, email } = req.body;
   User.find({ email: email }, (err, user) => {
     if (err || user.length === 0)
@@ -87,7 +87,7 @@ exports.signIn = (req, res, next) => {
   }).catch((err) => res.status(500).json({ error: err }));
 };
 
-exports.updateUser = (req, res, next) => {
+exports.updateUser = (req, res) => {
   const userID = req.params.userID;
 
   User.updateMany({ _id: userID }, { $set: req.body })
@@ -95,7 +95,7 @@ exports.updateUser = (req, res, next) => {
     .catch((error) => res.status(409).json(error));
 };
 
-exports.deleteUser = (req, res, next) => {
+exports.deleteUser = (req, res) => {
   User.remove({ _id: req.params.userID })
     .then((result) => {
       if (result.length > 0)
